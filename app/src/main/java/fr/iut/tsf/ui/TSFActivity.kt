@@ -1,7 +1,8 @@
-package fr.iut.tsf
+package fr.iut.tsf.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import fr.iut.tsf.R
 
 class TSFActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

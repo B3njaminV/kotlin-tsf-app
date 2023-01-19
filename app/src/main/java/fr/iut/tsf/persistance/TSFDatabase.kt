@@ -1,15 +1,16 @@
 package fr.iut.tsf.persistance
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import fr.iut.tsf.TSFApplication
-import fr.iut.tsf.model.Film
+import fr.iut.tsf.model.FilmEntity
 
 private const val DB_FILENAME = "tsf.db"
 
-@Database(entities = [Film::class], version = 1)
+@Database(entities = [FilmEntity::class], version = 1)
 abstract class TSFDatabase : RoomDatabase() {
 
     abstract fun TSFDao(): TSFDao
@@ -18,29 +19,19 @@ abstract class TSFDatabase : RoomDatabase() {
         private lateinit var application: Application
 
         @Volatile
-        private var instance: TSFDatabase? = null
+        private var INSTANCE: TSFDatabase? = null
 
-        fun getInstance(): TSFDatabase {
-            if (::application.isInitialized) {
-                if (instance == null)
-                    synchronized(this) {
-                        if (instance == null) {
-                            instance = Room.databaseBuilder(
-                                application.applicationContext,
-                                TSFDatabase::class.java,
-                                DB_FILENAME
-                            )
-                                .allowMainThreadQueries()
-                                .build()
+        fun getInstance(context: Context): TSFDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    TSFDatabase::class.java,
+                    DB_FILENAME
+                ).build();
+                INSTANCE = instance
 
-                            instance?.TSFDao()?.let {
-                                if (it.getAll().isEmpty()) emptyDatabaseStub(it)
-                            }
-                        }
-                    }
-                return instance!!
-            } else
-                throw RuntimeException("the database must be first initialized")
+                return instance
+            }
         }
 
 
@@ -53,8 +44,8 @@ abstract class TSFDatabase : RoomDatabase() {
         }
 
 
-        private fun emptyDatabaseStub(dogDAO: TSFDao) = with(dogDAO) {
-            insert(Film("Test", "./test.png", 10.0,0))
+        private fun emptyDatabaseStub(TSFDao: TSFDao) = with(TSFDao) {
+            insert(FilmEntity(0, "Test", "./test.png", 10.0))
         }
     }
 }

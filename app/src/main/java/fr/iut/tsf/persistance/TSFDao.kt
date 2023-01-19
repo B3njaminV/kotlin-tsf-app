@@ -8,20 +8,20 @@ import fr.iut.tsf.model.*
 interface TSFDao {
 
     @Query("SELECT * FROM film")
-    fun getAll(): List<Film>
+    fun getAll(): List<FilmEntity>
 
     @Query("SELECT * FROM film WHERE id = :id")
-    fun findById(id: Long): Film
+    fun findById(id: Long): FilmEntity
 
     @Insert(onConflict = REPLACE)
-    fun insert(dog: Film)
+    fun insert(dog: FilmEntity)
 
     @Insert
-    fun insertAll(vararg dogs: Film)
+    fun insertAll(vararg dogs: FilmEntity)
 
     @Update(onConflict = REPLACE)
-    fun update(dog: Film)
+    fun update(dog: FilmEntity)
 
     @Delete
-    fun delete(dog: Film)
+    fun delete(dog: FilmEntity)
 }

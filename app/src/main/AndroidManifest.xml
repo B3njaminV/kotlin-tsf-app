@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TSFActivity"
+            android:name=".ui.TSFActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
