@@ -1,3 +1,7 @@
 package fr.iut.tsf.model
 
-data class Film(val id: Long, val nom: String, val note: Double)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "film")
+data class Film(val nom: String, val path: String, val note: Double, @PrimaryKey(autoGenerate = true) val id: Long = 0L)
