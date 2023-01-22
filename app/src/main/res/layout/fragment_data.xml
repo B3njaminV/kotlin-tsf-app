@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DataActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        tools:context=".ui.activity.DogActivity">
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="text_overview,text_gender,text_measurement,text_aggressiveness"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/text_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_dog_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="test"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_overview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier" />
+
+        <EditText
+            android:id="@+id/edit_dog_breed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="test"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dog_name" />
+
+        <TextView
+            android:id="@+id/text_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dog_breed" />
+
+        <TextView
+            android:id="@+id/text_measurement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_dog_weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="test"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_measurement"
+            app:layout_constraintEnd_toStartOf="@id/label_weight_unit"
+            app:layout_constraintStart_toEndOf="@id/barrier" />
+
+        <TextView
+            android:id="@+id/label_weight_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_measurement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edit_dog_weight" />
+
+        <TextView
+            android:id="@+id/text_aggressiveness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dog_weight" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="3"
+            android:stepSize="1"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            app:layout_constraintTop_toTopOf="@+id/text_aggressiveness" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

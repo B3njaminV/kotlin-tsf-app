@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.iut.tsf.ui.TSFActivity">
+    tools:context="fr.iut.tsf.ui.DataActivity">
 
     <FrameLayout
         android:id="@+id/id_fragment"
