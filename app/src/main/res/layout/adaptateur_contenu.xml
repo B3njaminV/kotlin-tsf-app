@@ -15,16 +15,27 @@
     app:cardCornerRadius="8dp">
 
     <LinearLayout
+        android:id="@+id/layout_cardview_dog"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:adjustViewBounds="true"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_margin">
+
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/black"
+            tools:text="Undefined" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
