@@ -1,4 +1,4 @@
-package fr.iut.tsf.persistance
+package fr.iut.tsf.data
 
 import android.app.Application
 import android.content.Context
@@ -6,11 +6,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import fr.iut.tsf.TSFApplication
-import fr.iut.tsf.model.FilmEntity
+import fr.iut.tsf.model.Film
 
 private const val DB_FILENAME = "tsf.db"
 
-@Database(entities = [FilmEntity::class], version = 1)
+@Database(entities = [Film::class], version = 1)
 abstract class TSFDatabase : RoomDatabase() {
 
     abstract fun TSFDao(): TSFDao
@@ -45,7 +45,7 @@ abstract class TSFDatabase : RoomDatabase() {
 
 
         private fun emptyDatabaseStub(TSFDao: TSFDao) = with(TSFDao) {
-            insert(FilmEntity(0, "Test", "./test.png", 10.0))
+            insert(Film(0, "Test", "./test.png", 10.0))
         }
     }
 }

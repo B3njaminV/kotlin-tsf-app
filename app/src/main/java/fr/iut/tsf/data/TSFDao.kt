@@ -1,27 +1,28 @@
-package fr.iut.tsf.persistance
+package fr.iut.tsf.data
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 import fr.iut.tsf.model.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TSFDao {
 
     @Query("SELECT * FROM film")
-    fun getAll(): List<FilmEntity>
+    fun getAll(): Flow<List<Film>>
 
     @Query("SELECT * FROM film WHERE id = :id")
-    fun findById(id: Long): FilmEntity
+    fun findById(id: Long): Film
 
     @Insert(onConflict = REPLACE)
-    fun insert(dog: FilmEntity)
+    fun insert(dog: Film)
 
     @Insert
-    fun insertAll(vararg dogs: FilmEntity)
+    fun insertAll(vararg dogs: Film)
 
     @Update(onConflict = REPLACE)
-    fun update(dog: FilmEntity)
+    fun update(dog: Film)
 
     @Delete
-    fun delete(dog: FilmEntity)
+    fun delete(dog: Film)
 }

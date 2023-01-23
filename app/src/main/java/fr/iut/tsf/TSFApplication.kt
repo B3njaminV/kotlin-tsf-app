@@ -1,7 +1,7 @@
 package fr.iut.tsf
 
 import android.app.Application
-import fr.iut.tsf.persistance.TSFDatabase
+import fr.iut.tsf.data.TSFDatabase
 
 
 class TSFApplication : Application() {
