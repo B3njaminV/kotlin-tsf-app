@@ -21,10 +21,10 @@ abstract class TSFDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: TSFDatabase? = null
 
-        fun getInstance(context: Context): TSFDatabase {
+        fun getInstance(): TSFDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    application.applicationContext,
                     TSFDatabase::class.java,
                     DB_FILENAME
                 ).build();

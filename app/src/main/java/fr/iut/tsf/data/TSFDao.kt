@@ -11,6 +11,9 @@ interface TSFDao {
     @Query("SELECT * FROM film")
     fun getAll(): Flow<List<Film>>
 
+    @Query("SELECT * FROM film")
+    fun getAllFlow(): Flow<List<Film>>
+
     @Query("SELECT * FROM film WHERE id = :id")
     fun findById(id: Long): Film
 
