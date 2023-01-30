@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.DataActivity"
+            android:name=".ui.FilmActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

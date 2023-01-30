@@ -12,7 +12,6 @@ private const val DB_FILENAME = "tsf.db"
 
 @Database(entities = [Film::class], version = 1)
 abstract class TSFDatabase : RoomDatabase() {
-
     abstract fun TSFDao(): TSFDao
 
     companion object {
@@ -33,7 +32,6 @@ abstract class TSFDatabase : RoomDatabase() {
                 return instance
             }
         }
-
 
         @Synchronized
         fun initialize(app: TSFApplication) {

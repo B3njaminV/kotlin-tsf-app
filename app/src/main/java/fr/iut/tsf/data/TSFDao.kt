@@ -1,7 +1,7 @@
 package fr.iut.tsf.data
 
 import androidx.room.*
-import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.OnConflictStrategy.Companion.REPLACE
 import fr.iut.tsf.model.*
 import kotlinx.coroutines.flow.Flow
 

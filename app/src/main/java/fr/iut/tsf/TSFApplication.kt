@@ -6,14 +6,12 @@ import fr.iut.tsf.data.TSFRepository
 
 
 class TSFApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        val database by lazy{
-            TSFDatabase.initialize(this)
-        }
-        
-        val repository by lazy{
-            TSFRepository(database.TSFDao())
-        }
+
+    val database by lazy {
+        TSFDatabase.initialize(this)
+        TSFDatabase.getInstance()
+    }
+    val repository by lazy{
+        TSFRepository(database.TSFDao())
     }
 }
