@@ -9,9 +9,9 @@ import fr.iut.tsf.model.Film
 
 class TSFRepository(private val tsfDAO: TSFDao, private val TSFManager: TSFManager){
 
-    private val movies = tsfDAO.getAll().asLiveData()
+    private val moviesEntity = tsfDAO.getAll().asLiveData()
 
-    val allMovies: LiveData<List<Film>> = Transformations.map(movies) { entities ->
+    val allMovies: LiveData<List<Film>> = Transformations.map(moviesEntity) { entities ->
         val list = mutableListOf<Film>()
         for (item: FilmEntity in entities) {
             list.add(Film(item.id, item.nom, item.path, item.note))

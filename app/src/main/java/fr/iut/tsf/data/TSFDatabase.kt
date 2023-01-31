@@ -28,7 +28,6 @@ abstract class TSFDatabase : RoomDatabase() {
                     DB_FILENAME
                 ).build();
                 INSTANCE = instance
-
                 return instance
             }
         }
@@ -37,8 +36,12 @@ abstract class TSFDatabase : RoomDatabase() {
         fun initialize(app: TSFApplication) {
             if (::application.isInitialized)
                 throw RuntimeException("the database must not be initialized twice")
-
             application = app
+
+            INSTANCE?.let { database ->
+                var dao = database.TSFDao()
+                dao.insertAll(Stub().filmStub())
+            }
         }
     }
 }
