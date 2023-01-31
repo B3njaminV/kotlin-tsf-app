@@ -6,7 +6,7 @@ import fr.iut.tsf.model.Film
 
 class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
 
-    val allMovies: LiveData<List<Film>> = repository.allMovie
+    val allMovies: LiveData<List<Film>> = repository.allMovies
     fun getFilm(id: Int): LiveData<Film>{
         return MutableLiveData(allMovies.value?.find { it.id == id })
     }

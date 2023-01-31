@@ -1,6 +1,7 @@
 package fr.iut.tsf
 
 import android.app.Application
+import fr.iut.tsf.api.TSFManager
 import fr.iut.tsf.data.TSFDatabase
 import fr.iut.tsf.data.TSFRepository
 
@@ -11,7 +12,8 @@ class TSFApplication : Application() {
         TSFDatabase.initialize(this)
         TSFDatabase.getInstance()
     }
+    val tsfAPIManager by lazy { TSFManager() }
     val repository by lazy{
-        TSFRepository(database.TSFDao())
+        TSFRepository(database.TSFDao(), tsfAPIManager)
     }
 }

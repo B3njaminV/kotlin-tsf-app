@@ -32,9 +32,7 @@ class FilmFragment : Fragment() {
 
         val parentActivity = requireActivity()
 
-        val viewModel = FilmViewModelFactory(
-            (requireActivity().application as TSFApplication).repository)
-            .create(FilmViewModel::class.java)
+        val viewModel = FilmViewModelFactory((requireActivity().application as TSFApplication).repository).create(FilmViewModel::class.java)
         film = viewModel.getFilm(filmId)
     }
 

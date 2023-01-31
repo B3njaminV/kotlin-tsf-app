@@ -6,11 +6,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import fr.iut.tsf.TSFApplication
-import fr.iut.tsf.model.Film
+import fr.iut.tsf.data.entity.FilmEntity
 
 private const val DB_FILENAME = "tsf.db"
 
-@Database(entities = [Film::class], version = 1)
+@Database(entities = [FilmEntity::class], version = 1, exportSchema = false)
 abstract class TSFDatabase : RoomDatabase() {
     abstract fun TSFDao(): TSFDao
 
@@ -39,11 +39,6 @@ abstract class TSFDatabase : RoomDatabase() {
                 throw RuntimeException("the database must not be initialized twice")
 
             application = app
-        }
-
-
-        private fun emptyDatabaseStub(TSFDao: TSFDao) = with(TSFDao) {
-            insert(Film(0, "Test", "./test.png", 10.0))
         }
     }
 }

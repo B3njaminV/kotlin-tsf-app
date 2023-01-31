@@ -2,6 +2,7 @@ package fr.iut.tsf.data
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.Companion.REPLACE
+import fr.iut.tsf.data.entity.FilmEntity
 import fr.iut.tsf.model.*
 import kotlinx.coroutines.flow.Flow
 
@@ -9,23 +10,13 @@ import kotlinx.coroutines.flow.Flow
 interface TSFDao {
 
     @Query("SELECT * FROM film")
-    fun getAll(): Flow<List<Film>>
-
-    @Query("SELECT * FROM film")
-    fun getAllFlow(): Flow<List<Film>>
-
+    fun getAll(): Flow<List<FilmEntity>>
     @Query("SELECT * FROM film WHERE id = :id")
-    fun findById(id: Long): Film
-
+    fun findById(id: Long): FilmEntity
     @Insert(onConflict = REPLACE)
-    fun insert(dog: Film)
-
-    @Insert
-    fun insertAll(vararg dogs: Film)
-
+    fun insert(id: FilmEntity)
     @Update(onConflict = REPLACE)
-    fun update(dog: Film)
-
+    fun update(id: FilmEntity)
     @Delete
-    fun delete(dog: Film)
+    fun delete(id: FilmEntity)
 }

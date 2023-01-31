@@ -15,13 +15,10 @@ class FilmListActivity : SimpleFragmentActivity(), FilmListFragment.OnInteractio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         if (savedInstanceState != null)
             master = supportFragmentManager.findFragmentById(R.id.container_fragment) as FilmListFragment
 
     }
-
     override fun onFilmSelect(id: Int) {
         startActivity(FilmActivity.getIntent(this, id))
     }

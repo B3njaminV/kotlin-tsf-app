@@ -12,9 +12,7 @@ abstract class SimpleFragmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(getLayoutResId())
-
-        setSupportActionBar(findViewById(R.id.toolbar_activity))
-
+        //setSupportActionBar(findViewById(R.id.toolbar_activity))
         if (supportFragmentManager.findFragmentById(R.id.container_fragment) == null) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.container_fragment, createFragment())

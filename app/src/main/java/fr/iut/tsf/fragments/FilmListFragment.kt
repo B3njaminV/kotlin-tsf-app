@@ -27,9 +27,9 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adaptateurContenu = AdaptateurContenu(dataList, this)
         viewModel = FilmViewModelFactory((requireActivity().application as TSFApplication).repository).create(FilmViewModel::class.java)
         dataList = viewModel.allMovies
+        adaptateurContenu = AdaptateurContenu(dataList, this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,6 +40,10 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
 
         // Pour l'ajout des favoris plus tard
         //view.findViewById<FloatingActionButton>(R.id.myfav).setOnClickListener { mesFavoris() }
+
+        dataList.observe(viewLifecycleOwner) {
+            adaptateurContenu.updateList(dataList)
+        }
         return view
     }
 
