@@ -16,6 +16,7 @@ class FilmListActivity : SimpleFragmentActivity(), FilmListFragment.OnInteractio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getSupportActionBar()?.hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (savedInstanceState != null)
             master = supportFragmentManager.findFragmentById(R.id.container_fragment) as FilmListFragment

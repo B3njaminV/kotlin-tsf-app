@@ -16,6 +16,10 @@ class TSFRepository(private val tsfDAO: TSFDao, private val TSFManager: TSFManag
         for (item: FilmEntity in entities) {
             list.add(Film(item.id, item.nom, item.path, item.note))
         }
+        list.add(Film(0, "test", "test", 0.0))
+        list.add(Film(1, "test", "test", 0.0))
+        list.add(Film(2, "test", "test", 0.0))
+        list.add(Film(3, "test", "test", 0.0))
         list
     }
 }
