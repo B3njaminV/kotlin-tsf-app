@@ -7,9 +7,10 @@ import fr.iut.tsf.api.TSFManager
 import fr.iut.tsf.data.entity.FilmEntity
 import fr.iut.tsf.model.Film
 
-class TSFRepository(private val tsfDAO: TSFDao, private val TSFManager: TSFManager){
+class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManager){
 
-    private val moviesEntity = tsfDAO.getAll().asLiveData()
+    //private val moviesEntity = tsfDAO.getAll().asLiveData()
+    private val moviesEntity = tsfManager.getPopularMovies().asLiveData()
 
     val allMovies: LiveData<List<Film>> = Transformations.map(moviesEntity) { entities ->
         val list = mutableListOf<Film>()

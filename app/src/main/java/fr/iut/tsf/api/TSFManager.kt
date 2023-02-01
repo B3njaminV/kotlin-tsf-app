@@ -1,5 +1,6 @@
 package fr.iut.tsf.api
 
+import android.util.Log
 import fr.iut.tsf.model.Film
 import retrofit2.Call
 import retrofit2.Callback
@@ -9,19 +10,35 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class TSFManager {
 
-    var api = "https://api.themoviedb.org/3";
-    var apiKey = "api_key=e18509c478bab6b0ec871400a09d9daa";
-    var lang = "&language=fr-FR";
-/*
-    fun getMovieByName(query: String): Call<Film>{
+    private val service : TSFServices
+    init {
         val retrofit = Retrofit.Builder()
-            .baseUrl(api + "/search/movie?" + apiKey + lang + "&query=" + query )
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-        val service = retrofit.create(TSFServices::class.java);
-        //val requete = service.getMovie(query);
-        //return requete;
+            .build()
+        service = retrofit.create(TSFServices::class.java);
     }
-    */
+
+    fun getPopularMovies(page: Int = 1) {
+        service.getPopularMovies(page = page)
+            .enqueue(object : Callback<Film> {
+                override fun onResponse(
+                    call: Call<Film>,
+                    response: Response<Film>
+                ) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null) {
+                            Log.d("Repository", "Movies: OK")
+                        } else {
+                            Log.d("Repository", "Failed to get response")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Film>, t: Throwable) {
+                    Log.e("Repository", "onFailure", t)
+                }
+            })
+    }
 }
