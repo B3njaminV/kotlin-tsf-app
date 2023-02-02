@@ -9,10 +9,22 @@ import fr.iut.tsf.model.Film
 
 class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManager){
 
-    //private val moviesEntity = tsfDAO.getAll().asLiveData()
-    private val moviesEntity = tsfManager.getPopularMovies().asLiveData()
+    private val moviesEntity = tsfDAO.getAll().asLiveData()
+    private val moviesEntityRepo = tsfManager.getPopularMovies()
 
     val allMovies: LiveData<List<Film>> = Transformations.map(moviesEntity) { entities ->
+        val list = mutableListOf<Film>()
+        for (item: FilmEntity in entities) {
+            list.add(Film(item.id, item.nom, item.path, item.note))
+        }
+        list.add(Film(0, "test", "test", 0.0))
+        list.add(Film(1, "test", "test", 0.0))
+        list.add(Film(2, "test", "test", 0.0))
+        list.add(Film(3, "test", "test", 0.0))
+        list
+    }
+
+    val allMoviesRepo: LiveData<List<Film>> = Transformations.map(moviesEntity) { entities ->
         val list = mutableListOf<Film>()
         for (item: FilmEntity in entities) {
             list.add(Film(item.id, item.nom, item.path, item.note))

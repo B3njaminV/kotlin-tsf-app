@@ -12,23 +12,26 @@ private const val DB_FILENAME = "tsf.db"
 
 @Database(entities = [FilmEntity::class], version = 1, exportSchema = false)
 abstract class TSFDatabase : RoomDatabase() {
-    abstract fun TSFDao(): TSFDao
+    abstract fun tsfDao(): TSFDao
 
     companion object {
         private lateinit var application: Application
 
         @Volatile
-        private var INSTANCE: TSFDatabase? = null
+        private var instance: TSFDatabase? = null
 
         fun getInstance(): TSFDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
+            return instance ?: synchronized(this) {
+                val inst = Room.databaseBuilder(
                     application.applicationContext,
                     TSFDatabase::class.java,
                     DB_FILENAME
                 ).build();
-                INSTANCE = instance
-                return instance
+                inst.tsfDao().let {
+                    if (it.getAll().equals(null)) emptyDatabaseStub(it)
+                }
+                instance = inst
+                return inst
             }
         }
 
@@ -37,11 +40,10 @@ abstract class TSFDatabase : RoomDatabase() {
             if (::application.isInitialized)
                 throw RuntimeException("the database must not be initialized twice")
             application = app
+        }
 
-            INSTANCE?.let { database ->
-                var dao = database.TSFDao()
-                dao.insertAll(Stub().filmStub())
-            }
+        private fun emptyDatabaseStub(tsfDao: TSFDao) = with(tsfDao) {
+            insertAll(Stub().filmStub())
         }
     }
 }

@@ -11,10 +11,11 @@ import retrofit2.http.Query
 interface TSFServices {
     @GET("")
     fun getMovie(@Query("idBalise") idBalise: Int): Call<Film>;
+
     @GET("movie/popular")
     fun getPopularMovies(
         @Query("api_key") apiKey: String = "api_key=e18509c478bab6b0ec871400a09d9daa",
         @Query("page") page: Int
-    ): Call<Flow<FilmEntity>>
+    ): Call<Flow<List<FilmEntity>>>
 
 }
