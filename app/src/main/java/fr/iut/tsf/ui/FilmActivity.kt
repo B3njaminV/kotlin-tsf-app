@@ -26,6 +26,5 @@ class FilmActivity : SimpleFragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         filmId = intent.getIntExtra(EXTRA_MOVIE_ID, filmId)
         super.onCreate(savedInstanceState)
-        getSupportActionBar()?.hide();
     }
 }

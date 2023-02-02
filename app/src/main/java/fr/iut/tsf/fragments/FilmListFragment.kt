@@ -52,6 +52,11 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         adaptateurContenu = AdaptateurContenu(dataList, this)
     }
 
+    override fun onStart() {
+        super.onStart()
+        updateList()
+    }
+
     override fun onFilmSelect(id: Int) {
         listener?.onFilmSelect(id)
     }

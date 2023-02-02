@@ -13,7 +13,6 @@ private const val DB_FILENAME = "tsf.db"
 @Database(entities = [FilmEntity::class], version = 1, exportSchema = false)
 abstract class TSFDatabase : RoomDatabase() {
     abstract fun tsfDao(): TSFDao
-
     companion object {
         private lateinit var application: Application
 

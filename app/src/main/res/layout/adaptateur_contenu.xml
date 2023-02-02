@@ -23,10 +23,10 @@
 
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@mipmap/tsf" />
 
         <TextView
             android:id="@+id/titre"
@@ -36,6 +36,7 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/black"
             tools:text="Undefined" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

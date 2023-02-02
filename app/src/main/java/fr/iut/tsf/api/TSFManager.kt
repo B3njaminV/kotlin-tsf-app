@@ -2,6 +2,7 @@ package fr.iut.tsf.api
 
 import android.util.Log
 import fr.iut.tsf.data.entity.FilmEntity
+import fr.iut.tsf.data.entity.GetMoviesResponse
 import fr.iut.tsf.model.Film
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
@@ -23,22 +24,22 @@ class TSFManager {
 
     fun getPopularMovies(page: Int = 1) {
         service.getPopularMovies(page = page)
-            .enqueue(object : Callback<Flow<List<FilmEntity>>> {
+            .enqueue(object : Callback<GetMoviesResponse> {
                 override fun onResponse(
-                    call: Call<Flow<List<FilmEntity>>>,
-                    response: Response<Flow<List<FilmEntity>>>
+                    call: Call<GetMoviesResponse>,
+                    response: Response<GetMoviesResponse>
                 ) {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         if (responseBody != null) {
-                            Log.d("Repository", "Movies: OK")
+                            Log.d("Repository", "Movies: ${responseBody.movies}")
                         } else {
                             Log.d("Repository", "Failed to get response")
                         }
                     }
                 }
 
-                override fun onFailure(call: Call<Flow<List<FilmEntity>>>, t: Throwable) {
+                override fun onFailure(call: Call<GetMoviesResponse>, t: Throwable) {
                     Log.e("Repository", "Failure", t)
                 }
             })

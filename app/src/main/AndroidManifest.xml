@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,10 +17,10 @@
         android:name=".TSFApplication">
         <activity
             android:name=".ui.FilmListActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TSF.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -28,7 +30,8 @@
         </activity>
         <activity
             android:name=".ui.FilmActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.TSF.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

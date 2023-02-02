@@ -21,6 +21,18 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
         list.add(Film(1, "test", "test", 0.0))
         list.add(Film(2, "test", "test", 0.0))
         list.add(Film(3, "test", "test", 0.0))
+        list.add(Film(4, "test", "test", 0.0))
+        list.add(Film(5, "test", "test", 0.0))
+        list.add(Film(6, "test", "test", 0.0))
+        list.add(Film(7, "test", "test", 0.0))
+        list.add(Film(8, "test", "test", 0.0))
+        list.add(Film(9, "test", "test", 0.0))
+        list.add(Film(10, "test", "test", 0.0))
+        list.add(Film(11, "test", "test", 0.0))
+        list.add(Film(12, "test", "test", 0.0))
+        list.add(Film(13, "test", "test", 0.0))
+        list.add(Film(14, "test", "test", 0.0))
+        list.add(Film(15, "test", "test", 0.0))
         list
     }
 

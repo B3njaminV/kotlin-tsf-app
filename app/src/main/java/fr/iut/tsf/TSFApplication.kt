@@ -15,6 +15,6 @@ class TSFApplication : Application() {
     }
     val tsfAPIManager by lazy { TSFManager() }
     val repository by lazy{
-        TSFRepository(database.TSFDao(), tsfAPIManager)
+        TSFRepository(database.tsfDao(), tsfAPIManager)
     }
 }

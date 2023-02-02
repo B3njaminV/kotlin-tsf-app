@@ -33,7 +33,7 @@ class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val 
 
     class FilmViewHolder(itemView: View, listener: Callbacks) : RecyclerView.ViewHolder(itemView) {
 
-        private var picture = itemView.findViewById<ImageView>(R.id.image)
+        //private var picture = itemView.findViewById<ImageView>(R.id.image)
         private var titre = itemView.findViewById<TextView>(R.id.titre)
 
         var film: Film? = null
