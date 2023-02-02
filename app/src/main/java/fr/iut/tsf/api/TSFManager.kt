@@ -1,10 +1,7 @@
 package fr.iut.tsf.api
 
+import android.graphics.Movie
 import android.util.Log
-import fr.iut.tsf.data.entity.FilmEntity
-import fr.iut.tsf.data.entity.GetMoviesResponse
-import fr.iut.tsf.model.Film
-import kotlinx.coroutines.flow.Flow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,20 +11,24 @@ import retrofit2.converter.gson.GsonConverterFactory
 class TSFManager {
 
     private val service : TSFServices
+    private val URL = "https://api.themoviedb.org/3/"
+    private val PAGE = 1
+    private val LANGUAGE = "fr-FR"
+    private val APIKEY = "e18509c478bab6b0ec871400a09d9daa"
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         service = retrofit.create(TSFServices::class.java);
     }
 
-    fun getPopularMovies(page: Int = 1) {
-        service.getPopularMovies(page = page)
-            .enqueue(object : Callback<GetMoviesResponse> {
+    fun getPopularMovies(callback: (List<FilmAPI>) -> Unit) {
+        service.getPopularMovies(APIKEY, LANGUAGE, PAGE)
+            .enqueue(object : Callback<FilmsAPIResponse> {
                 override fun onResponse(
-                    call: Call<GetMoviesResponse>,
-                    response: Response<GetMoviesResponse>
+                    call: Call<FilmsAPIResponse>,
+                    response: Response<FilmsAPIResponse>
                 ) {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
@@ -36,10 +37,11 @@ class TSFManager {
                         } else {
                             Log.d("Repository", "Failed to get response")
                         }
+                        return callback(responseBody!!.movies)
                     }
                 }
 
-                override fun onFailure(call: Call<GetMoviesResponse>, t: Throwable) {
+                override fun onFailure(call: Call<FilmsAPIResponse>, t: Throwable) {
                     Log.e("Repository", "Failure", t)
                 }
             })

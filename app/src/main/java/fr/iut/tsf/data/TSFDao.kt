@@ -16,7 +16,7 @@ interface TSFDao {
     @Insert(onConflict = REPLACE)
     fun insert(id: FilmEntity)
     @Insert(onConflict = REPLACE)
-    fun insertAll(id: List<FilmEntity>)
+    fun insertAll(id: List<Film>)
     @Update(onConflict = REPLACE)
     fun update(id: FilmEntity)
     @Delete

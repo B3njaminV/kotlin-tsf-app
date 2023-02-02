@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.Flow
 class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val listener: Callbacks) :
     RecyclerView.Adapter<AdaptateurContenu.FilmViewHolder>() {
 
+    private val PATH = "https://image.tmdb.org/t/p/w500"
     override fun getItemCount() = dataList.value?.size ?: 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
