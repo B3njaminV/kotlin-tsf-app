@@ -8,4 +8,5 @@ data class Film(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @SerializedName("title") val title: String,
     @SerializedName("poster_path") val path: String,
+    @SerializedName("note") val note: String,
 )

@@ -9,6 +9,7 @@ import fr.iut.tsf.model.Film
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,19 +20,13 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
     val allMoviesApi = MutableLiveData<List<Film>>()
 
     init {
-        CoroutineScope(Dispatchers.IO).launch { getAllMovieDbFromManager() }
+        CoroutineScope(Dispatchers.IO).launch { getAllPopularMovieDbFromManager() }
     }
-    suspend fun insert(film: Film){
-        tsfDAO.insert(film)
-    }
-    suspend fun update(film: Film){
-        tsfDAO.update(film)
-    }
-    suspend fun delete(film: Film){
-        tsfDAO.delete(film)
-    }
+    suspend fun insert(film: Film) = withContext(Dispatchers.IO) { Log.i("Repository", "INSERT"); tsfDAO.insert(film) }
+    suspend fun delete(film: Film) = withContext(Dispatchers.IO) { Log.i("Repository", "DELETE"); tsfDAO.delete(film) }
+    suspend fun update(film: Film) = withContext(Dispatchers.IO) { Log.i("Repository", "UPDATE"); tsfDAO.update(film) }
 
-    private suspend fun getAllMovieDbFromManager() {
+    private suspend fun getAllPopularMovieDbFromManager() {
         tsfManager.getPopMovies().enqueue(object : Callback<FilmsAPIResponse> {
             override fun onResponse(call: Call<FilmsAPIResponse>, response: Response<FilmsAPIResponse>) {
                 if (response.isSuccessful) {

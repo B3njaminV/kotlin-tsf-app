@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TSFDao {
-
     @Query("SELECT * FROM film")
     fun getAll(): Flow<List<Film>>
     @Query("SELECT * FROM film WHERE id = :id")

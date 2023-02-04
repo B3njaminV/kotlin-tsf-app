@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.iut.tsf.R
+import fr.iut.tsf.databinding.AdaptateurContenuBinding
 import fr.iut.tsf.model.Film
 import kotlinx.coroutines.flow.Flow
 
@@ -20,11 +21,9 @@ class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val 
     private var PATHFORPICTURE = "https://image.tmdb.org/t/p/w500"
     override fun getItemCount() = dataList.value?.size ?: 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmViewHolder(LayoutInflater.from(parent.context).inflate(
-                R.layout.adaptateur_contenu,
-                parent,
-                false
-            ), listener
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmViewHolder(
+        AdaptateurContenuBinding.inflate(LayoutInflater.from(parent.context)),
+        listener
         )
 
 
@@ -32,9 +31,7 @@ class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val 
         holder.bind(dataList.value!![position])
 
 
-    class FilmViewHolder(itemView: View, listener: Callbacks) : RecyclerView.ViewHolder(itemView) {
-
-        //private var picture = itemView.findViewById<ImageView>(R.id.image)
+    class FilmViewHolder(private val binding: AdaptateurContenuBinding, listener: Callbacks) : RecyclerView.ViewHolder(binding.root) {
         private var titre = itemView.findViewById<TextView>(R.id.titre)
         private var image = itemView.findViewById<ImageView>(R.id.imageView)
 

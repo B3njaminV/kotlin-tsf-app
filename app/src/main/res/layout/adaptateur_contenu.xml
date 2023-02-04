@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    app:cardCornerRadius="8dp">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="fr.iut.tsf.utils.Converters" />
+        <variable
+            name="film"
+            type="fr.iut.tsf.model.Film" />
+    </data>
 
-    <LinearLayout
-        android:id="@+id/layout_cardview_dog"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_margin">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:cardBackgroundColor="@{Converters.notesColor(context,film.note.toInt())}"
+        app:cardCornerRadius="8dp">
 
-
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
+            android:id="@+id/layout_cardview_dog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/tsf" />
+            android:orientation="vertical"
+            android:padding="@dimen/activity_margin">
 
-        <TextView
-            android:id="@+id/titre"
-            android:layout_width="103dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/black"
-            tools:text="Undefined" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/tsf" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/titre"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/black"
+                tools:text="Undefined" />
 
-</androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
