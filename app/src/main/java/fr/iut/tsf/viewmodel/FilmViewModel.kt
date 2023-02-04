@@ -3,11 +3,16 @@ package fr.iut.tsf.viewmodel
 import androidx.lifecycle.*
 import fr.iut.tsf.data.TSFRepository
 import fr.iut.tsf.model.Film
+import kotlinx.coroutines.launch
 
 class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
 
-    val allMovies: LiveData<List<Film>> = repository.allMovies
-    //val allMoviesApi: LiveData<List<Film>> = repository.allMoviesApi.asLiveData()
+    val allMovies: LiveData<List<Film>> = repository.allMoviesApi
+
+    fun insert(film: Film) = viewModelScope.launch { repository.insert(film) }
+    fun update(film: Film) = viewModelScope.launch { repository.update(film)}
+    fun delete(film: Film) = viewModelScope.launch { repository.delete(film)}
+
     fun getFilm(id: Int): LiveData<Film>{
         return MutableLiveData(allMovies.value?.find { it.id == id })
     }

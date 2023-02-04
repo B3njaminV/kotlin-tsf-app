@@ -1,5 +1,6 @@
 package fr.iut.tsf.adapater
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,18 +10,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import fr.iut.tsf.R
 import fr.iut.tsf.model.Film
 import kotlinx.coroutines.flow.Flow
 
-class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val listener: Callbacks) :
-    RecyclerView.Adapter<AdaptateurContenu.FilmViewHolder>() {
+class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val listener: Callbacks) : RecyclerView.Adapter<AdaptateurContenu.FilmViewHolder>() {
 
-    private val PATH = "https://image.tmdb.org/t/p/w500"
+    private var PATHFORPICTURE = "https://image.tmdb.org/t/p/w500"
     override fun getItemCount() = dataList.value?.size ?: 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        FilmViewHolder(LayoutInflater.from(parent.context).inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilmViewHolder(LayoutInflater.from(parent.context).inflate(
                 R.layout.adaptateur_contenu,
                 parent,
                 false
@@ -36,6 +36,7 @@ class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val 
 
         //private var picture = itemView.findViewById<ImageView>(R.id.image)
         private var titre = itemView.findViewById<TextView>(R.id.titre)
+        private var image = itemView.findViewById<ImageView>(R.id.imageView)
 
         var film: Film? = null
             private set
@@ -46,15 +47,15 @@ class AdaptateurContenu(private var dataList: LiveData<List<Film>>, private val 
 
         fun bind(film: Film) {
             this.film = film
-            titre.text = film.nom
-            val context = itemView.context
+            titre.text = film.title
+            // Utilisation de Glide pour charger l'image
+            Glide.with(itemView).load("https://image.tmdb.org/t/p/w500/" + film.path).into(image)
         }
     }
 
     fun updateList(dataList: LiveData<List<Film>>) {
         this.dataList = dataList
         notifyDataSetChanged()
-        // a changer
     }
 
     interface Callbacks {

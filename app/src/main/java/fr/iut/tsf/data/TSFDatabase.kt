@@ -41,7 +41,7 @@ abstract class TSFDatabase : RoomDatabase() {
         }
 
         private fun emptyDatabaseStub(tsfDao: TSFDao) = with(tsfDao) {
-            //insertAll(Stub().filmStub())
+            insertAll(Stub().filmStub())
         }
     }
 }

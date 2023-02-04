@@ -37,10 +37,6 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         val rv = view.findViewById<RecyclerView>(R.id.recyclerView)
         rv.adapter = adaptateurContenu
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
-
-        // Pour l'ajout des favoris plus tard
-        //view.findViewById<FloatingActionButton>(R.id.myfav).setOnClickListener { mesFavoris() }
-
         dataList.observe(viewLifecycleOwner) {
             adaptateurContenu.updateList(dataList)
         }

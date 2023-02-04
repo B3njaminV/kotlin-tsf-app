@@ -25,27 +25,7 @@ class TSFManager {
         service = retrofit.create(TSFServices::class.java);
     }
 
-    fun getPopularMovies() : List<Film>{
-        service.getPopularMovies(APIKEY, LANGUAGE, PAGE)
-            .enqueue(object : Callback<FilmsAPIResponse> {
-                override fun onResponse(
-                    call: Call<FilmsAPIResponse>,
-                    response: Response<FilmsAPIResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        if (responseBody != null) {
-                            Log.d("Repository", "Movies: ${responseBody.movies}")
-                        } else {
-                            Log.d("Repository", "Failed to get response")
-                        }
-                        return responseBody.movies
-                    }
-                }
-
-                override fun onFailure(call: Call<FilmsAPIResponse>, t: Throwable) {
-                    Log.e("Repository", "Failure", t)
-                }
-            })
+    fun getPopMovies(): Call<FilmsAPIResponse> {
+        return service.getPopularMovies(APIKEY, LANGUAGE, PAGE);
     }
 }
