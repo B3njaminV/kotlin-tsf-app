@@ -9,4 +9,7 @@ data class Film(
     @SerializedName("title") val title: String,
     @SerializedName("poster_path") val path: String,
     @SerializedName("note") val note: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("release_date") val releaseDate: String,
+    @SerializedName("genre") val genre: String
 )
