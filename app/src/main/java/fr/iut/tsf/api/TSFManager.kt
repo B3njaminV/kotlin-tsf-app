@@ -2,11 +2,13 @@ package fr.iut.tsf.api
 
 import android.graphics.Movie
 import android.util.Log
+import fr.iut.tsf.model.Film
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Flow
 
 class TSFManager {
 
@@ -23,7 +25,7 @@ class TSFManager {
         service = retrofit.create(TSFServices::class.java);
     }
 
-    fun getPopularMovies(callback: (List<FilmAPI>) -> Unit) {
+    fun getPopularMovies() : List<Film>{
         service.getPopularMovies(APIKEY, LANGUAGE, PAGE)
             .enqueue(object : Callback<FilmsAPIResponse> {
                 override fun onResponse(
@@ -37,7 +39,7 @@ class TSFManager {
                         } else {
                             Log.d("Repository", "Failed to get response")
                         }
-                        return callback(responseBody!!.movies)
+                        return responseBody.movies
                     }
                 }
 

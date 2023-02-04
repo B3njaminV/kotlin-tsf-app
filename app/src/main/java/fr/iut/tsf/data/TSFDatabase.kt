@@ -1,16 +1,15 @@
 package fr.iut.tsf.data
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import fr.iut.tsf.TSFApplication
-import fr.iut.tsf.data.entity.FilmEntity
+import fr.iut.tsf.model.Film
 
 private const val DB_FILENAME = "tsf.db"
 
-@Database(entities = [FilmEntity::class], version = 1, exportSchema = false)
+@Database(entities = [Film::class], version = 1, exportSchema = false)
 abstract class TSFDatabase : RoomDatabase() {
     abstract fun tsfDao(): TSFDao
     companion object {
