@@ -17,6 +17,7 @@ abstract class SimpleFragmentActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         if (actionBar != null) {
             actionBar.setTitle("TopSerieFilm")
+            actionBar.setIcon(R.mipmap.tsf)
             //actionBar.setDisplayHomeAsUpEnabled(true)
         }
         if (supportFragmentManager.findFragmentById(R.id.container_fragment) == null) {

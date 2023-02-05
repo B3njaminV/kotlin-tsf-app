@@ -25,9 +25,6 @@ abstract class TSFDatabase : RoomDatabase() {
                     TSFDatabase::class.java,
                     DB_FILENAME
                 ).build();
-                inst.tsfDao().let {
-                    if (it.getAll().equals(null)) emptyDatabaseStub(it)
-                }
                 instance = inst
                 return inst
             }
@@ -38,10 +35,6 @@ abstract class TSFDatabase : RoomDatabase() {
             if (::application.isInitialized)
                 throw RuntimeException("the database must not be initialized twice")
             application = app
-        }
-
-        private fun emptyDatabaseStub(tsfDao: TSFDao) = with(tsfDao) {
-            insertAll(Stub().filmStub())
         }
     }
 }

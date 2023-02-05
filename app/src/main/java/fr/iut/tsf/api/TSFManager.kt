@@ -1,6 +1,4 @@
 package fr.iut.tsf.api
-
-import android.graphics.Movie
 import android.util.Log
 import fr.iut.tsf.model.Film
 import retrofit2.Call

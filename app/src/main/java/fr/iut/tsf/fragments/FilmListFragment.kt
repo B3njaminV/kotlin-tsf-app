@@ -35,20 +35,17 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         val rv = view.findViewById<RecyclerView>(R.id.recyclerView)
         rv.adapter = adaptateurContenu
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         dataList.observe(viewLifecycleOwner) {
             adaptateurContenu.submitList(dataList.value)
         }
-        return view
     }
-/*
-    fun updateList() {
-        dataList = viewModel.allMovies
-        adaptateurContenu = AdaptateurContenu(this)
-    }
-*/
     override fun onStart() {
         super.onStart()
-        //updateList()
     }
 
     override fun onFilmSelect(id: Int) {
@@ -57,7 +54,6 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
 
     override fun onResume() {
         super.onResume()
-        //updateList()
     }
 
     override fun onAttach(context: Context) {

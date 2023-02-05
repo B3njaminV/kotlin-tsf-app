@@ -13,15 +13,8 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        app:cardBackgroundColor="@{Converters.notesColor(context,film.note.toInt())}"
-        app:cardCornerRadius="8dp">
+        android:layout_margin="2dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:id="@+id/layout_cardview_dog"
@@ -38,13 +31,12 @@
 
             <TextView
                 android:id="@+id/titre"
-                android:layout_width="370dp"
+                android:layout_width="357dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:gravity="center"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/black"
-                tools:text="Undefined" />
+                android:text="@{film.title}"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
