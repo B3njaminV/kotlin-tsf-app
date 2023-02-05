@@ -25,32 +25,30 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
     private lateinit var adaptateurContenu: AdaptateurContenu
     private var listener: OnInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         viewModel = FilmViewModelFactory((requireActivity().application as TSFApplication).repository).create(FilmViewModel::class.java)
         dataList = viewModel.allMovies
-        adaptateurContenu = AdaptateurContenu(dataList, this)
-    }
+        adaptateurContenu = AdaptateurContenu(this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
         val rv = view.findViewById<RecyclerView>(R.id.recyclerView)
         rv.adapter = adaptateurContenu
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
         dataList.observe(viewLifecycleOwner) {
-            adaptateurContenu.updateList(dataList)
+            adaptateurContenu.submitList(dataList.value)
         }
         return view
     }
-
+/*
     fun updateList() {
         dataList = viewModel.allMovies
-        adaptateurContenu = AdaptateurContenu(dataList, this)
+        adaptateurContenu = AdaptateurContenu(this)
     }
-
+*/
     override fun onStart() {
         super.onStart()
-        updateList()
+        //updateList()
     }
 
     override fun onFilmSelect(id: Int) {
@@ -59,7 +57,7 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
 
     override fun onResume() {
         super.onResume()
-        updateList()
+        //updateList()
     }
 
     override fun onAttach(context: Context) {
