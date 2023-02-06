@@ -26,4 +26,8 @@ class TSFManager {
     fun getPopMovies(): Call<FilmsAPIResponse> {
         return service.getPopularMovies(APIKEY, LANGUAGE, PAGE);
     }
+    fun getDetailMovie(id : Int): Call<Film> {
+        return service.getMovie(APIKEY, id , LANGUAGE);
+    }
+
 }

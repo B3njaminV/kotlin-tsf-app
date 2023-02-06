@@ -46,7 +46,7 @@ class FilmFragment : Fragment() {
         val genre : TextView = view.findViewById(R.id.genre)
         detailtitre.text = film.value?.title
         description.text = film.value?.description
-        genre.text = film.value?.genre
+        genre.text = film.value?.voteAverage
         Glide.with(view).load("https://image.tmdb.org/t/p/w500/" + film.value!!.path).into(imageView2)
         return view
     }

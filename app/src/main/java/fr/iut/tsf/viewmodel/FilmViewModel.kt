@@ -10,10 +10,11 @@ class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
     val allMovies: LiveData<List<Film>> = repository.allMoviesApi
 
     fun insert(film: Film) = viewModelScope.launch { repository.insert(film) }
-    fun update(film: Film) = viewModelScope.launch { repository.update(film)}
-    fun delete(film: Film) = viewModelScope.launch { repository.delete(film)}
+    fun update(film: Film) = viewModelScope.launch { repository.update(film) }
+    fun delete(film: Film) = viewModelScope.launch { repository.delete(film) }
 
     fun getFilm(id: Int): LiveData<Film>{
+        var film : Film
         return MutableLiveData(allMovies.value?.find { it.id == id })
     }
 }

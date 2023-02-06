@@ -18,6 +18,7 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
 
     val allMoviesDb = tsfDAO.getAll().asLiveData()
     val allMoviesApi = MutableLiveData<List<Film>>()
+    val oneMovie = MutableLiveData<Film?>()
 
     init {
         CoroutineScope(Dispatchers.IO).launch { getAllPopularMovieDbFromManager() }
@@ -41,6 +42,25 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
             }
 
             override fun onFailure(call: Call<FilmsAPIResponse>, t: Throwable) {
+                Log.e("Repository", "Failure", t)
+            }
+        })
+    }
+
+    private suspend fun getMovieDetailFromManager(id : Int) {
+        tsfManager.getDetailMovie(id).enqueue(object : Callback<Film> {
+            override fun onResponse(call: Call<Film>, response: Response<Film>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        oneMovie.postValue(responseBody)
+                    } else {
+                        Log.d("Repository", "Failed to get response")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Film>, t: Throwable) {
                 Log.e("Repository", "Failure", t)
             }
         })
