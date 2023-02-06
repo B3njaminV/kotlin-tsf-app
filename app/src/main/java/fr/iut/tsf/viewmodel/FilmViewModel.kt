@@ -8,7 +8,6 @@ import kotlinx.coroutines.launch
 class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
 
     val allMovies: LiveData<List<Film>> = repository.allMoviesApi
-
     fun insert(film: Film) = viewModelScope.launch { repository.insert(film) }
     fun update(film: Film) = viewModelScope.launch { repository.update(film) }
     fun delete(film: Film) = viewModelScope.launch { repository.delete(film) }

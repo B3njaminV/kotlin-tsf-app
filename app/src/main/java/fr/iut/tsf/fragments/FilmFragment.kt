@@ -23,13 +23,11 @@ import fr.iut.tsf.model.Film
 import fr.iut.tsf.viewmodel.FilmViewModel
 import fr.iut.tsf.viewmodel.FilmViewModelFactory
 
-@Suppress("UNREACHABLE_CODE")
 class FilmFragment : Fragment() {
     private lateinit var film: LiveData<Film>
     private var filmId = 0
-    private val toolbar = activity?.findViewById<Toolbar>(R.id.toolbar_activity)
     private val PATH = "https://image.tmdb.org/t/p/w500/"
-    private var listener: OnInteractionListener? = null
+    private lateinit var viewModel: FilmViewModel
 
     companion object {
         private const val EXTRA_FILM_ID = "extrafilmid"
@@ -41,10 +39,8 @@ class FilmFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        filmId =
-            savedInstanceState?.getInt(EXTRA_FILM_ID) ?: arguments?.getInt(EXTRA_FILM_ID) ?: filmId
-        val viewModel =
-            FilmViewModelFactory((requireActivity().application as TSFApplication).repository).create(
+        filmId =  savedInstanceState?.getInt(EXTRA_FILM_ID) ?: arguments?.getInt(EXTRA_FILM_ID) ?: filmId
+        viewModel = FilmViewModelFactory((requireActivity().application as TSFApplication).repository).create(
                 FilmViewModel::class.java
             )
         film = viewModel.getFilm(filmId)
@@ -76,13 +72,9 @@ class FilmFragment : Fragment() {
         date.text = film.value?.releaseDate
         rating.rating = film.value?.voteAverage!!.toFloat() / 2
         view.findViewById<FloatingActionButton>(R.id.favButton).setOnClickListener {
-            listener?.onAddFavoris(film.value!!)
+            viewModel.insert(film.value!!)
             Toast.makeText(this.context, getString(R.string.addFavoris), Toast.LENGTH_SHORT).show()
         }
         return view
-    }
-
-    interface OnInteractionListener {
-        fun onAddFavoris(film: Film)
     }
 }

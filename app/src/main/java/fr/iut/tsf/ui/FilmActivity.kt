@@ -10,7 +10,7 @@ import fr.iut.tsf.fragments.FilmListFragment
 import fr.iut.tsf.model.Film
 import fr.iut.tsf.ui.activity.SimpleFragmentActivity
 
-class FilmActivity : SimpleFragmentActivity(), FilmFragment.OnInteractionListener {
+class FilmActivity : SimpleFragmentActivity() {
     override fun createFragment() = FilmFragment.newInstance(filmId)
     override fun getLayoutResId() = R.layout.toolbar
 
@@ -18,7 +18,6 @@ class FilmActivity : SimpleFragmentActivity(), FilmFragment.OnInteractionListene
 
     companion object {
         private const val EXTRA_MOVIE_ID = "fr.iut.ouafff.extramovieid"
-
         fun getIntent(context: Context, id: Int) =
             Intent(context, FilmActivity::class.java).apply {
                 putExtra(EXTRA_MOVIE_ID, id)
@@ -31,7 +30,4 @@ class FilmActivity : SimpleFragmentActivity(), FilmFragment.OnInteractionListene
         super.onCreate(savedInstanceState)
     }
 
-    override fun onAddFavoris(film: Film) {
-        //TODO("Not yet implemented")
-    }
 }

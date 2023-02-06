@@ -9,7 +9,7 @@ import fr.iut.tsf.model.Film
 
 private const val DB_FILENAME = "tsf.db"
 
-@Database(entities = [Film::class], version = 1, exportSchema = false)
+@Database(entities = [Film::class], version = 2, exportSchema = false)
 abstract class TSFDatabase : RoomDatabase() {
     abstract fun tsfDao(): TSFDao
     companion object {
@@ -24,7 +24,9 @@ abstract class TSFDatabase : RoomDatabase() {
                     application.applicationContext,
                     TSFDatabase::class.java,
                     DB_FILENAME
-                ).build();
+                )
+                    .fallbackToDestructiveMigration()
+                    .build();
                 instance = inst
                 return inst
             }

@@ -26,11 +26,9 @@ class AdaptateurContenu(private val listener: Callbacks) :
 
         private val PATHFORPICTURE = "https://image.tmdb.org/t/p/w500/"
         val film: Film? get() = binding.film
-
         init {
             itemView.setOnClickListener { film?.let { listener.onFilmSelect(it.id) } }
         }
-
         fun bind(flm: Film) {
             binding.film = flm
             binding.executePendingBindings()
