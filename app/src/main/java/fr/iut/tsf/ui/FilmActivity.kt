@@ -3,6 +3,7 @@ package fr.iut.tsf.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import fr.iut.tsf.R
 import fr.iut.tsf.fragments.FilmFragment
 import fr.iut.tsf.fragments.FilmListFragment
@@ -25,6 +26,7 @@ class FilmActivity : SimpleFragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         filmId = intent.getIntExtra(EXTRA_MOVIE_ID, filmId)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState)
     }
 }

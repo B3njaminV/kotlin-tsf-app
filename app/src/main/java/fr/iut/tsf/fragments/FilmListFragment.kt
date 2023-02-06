@@ -3,6 +3,7 @@ package fr.iut.tsf.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
@@ -34,12 +35,14 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
         val rv = view.findViewById<RecyclerView>(R.id.recyclerView)
         rv.adapter = adaptateurContenu
-        rv.layoutManager = GridLayoutManager(requireContext(), 2)
+        rv.layoutManager = GridLayoutManager(requireContext(), 3)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_activity)
+        toolbar?.title = "Films Populaires"
         dataList.observe(viewLifecycleOwner) {
             adaptateurContenu.submitList(dataList.value)
         }

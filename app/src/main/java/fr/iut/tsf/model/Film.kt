@@ -9,11 +9,11 @@ data class Film(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String,
     @SerializedName("poster_path") val path: String,
-    @SerializedName("note") val note: String,
+    @SerializedName("overview") val overview: String,
     @SerializedName("description") val description: String,
     @SerializedName("release_date") val releaseDate: String,
-    @SerializedName("genre") val genre: String,
     @SerializedName("popularity") val popularity: String,
     @SerializedName("vote_count") val voteCount: Int,
-    @SerializedName("vote_average") val voteAverage: String
+    @SerializedName("vote_average") val voteAverage: Float,
+    @SerializedName("backdrop_path") val backdropPath: String
 )
