@@ -10,7 +10,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="tsfblue">#7594B8</color>
+    <color name="tsfblue">#334D5C</color>
+    <color name="tsfblue3">#5D7085</color>
+    <color name="tsfblue2">#7594B8</color>
     <color name="truetsfblue">#FF306FB6</color>
 
     <color name="color0">@color/red</color>

@@ -18,9 +18,6 @@ class FilmListActivity : SimpleFragmentActivity(), FilmListFragment.OnInteractio
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_activity)
-        toolbar.setTitle(getString(R.string.filmPopulaire))
-        toolbar?.titleMarginStart = 200
         if (savedInstanceState != null)
             master = supportFragmentManager.findFragmentById(R.id.container_fragment) as FilmListFragment
     }

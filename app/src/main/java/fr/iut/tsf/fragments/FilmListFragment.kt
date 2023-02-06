@@ -3,17 +3,14 @@ package fr.iut.tsf.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.iut.tsf.R
 import fr.iut.tsf.TSFApplication
 import fr.iut.tsf.adapater.AdaptateurContenu
-import fr.iut.tsf.data.TSFDatabase
 import fr.iut.tsf.model.Film
 import fr.iut.tsf.viewmodel.FilmViewModel
 import fr.iut.tsf.viewmodel.FilmViewModelFactory
@@ -41,13 +38,13 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar = activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_activity)
-        toolbar?.title = "Films Populaires"
         dataList.observe(viewLifecycleOwner) {
             adaptateurContenu.submitList(dataList.value)
         }
     }
     override fun onStart() {
+        val toolbar = activity?.findViewById<Toolbar>(R.id.toolbar_activity)
+        toolbar?.title = getString(R.string.filmPopulaire)
         super.onStart()
     }
 

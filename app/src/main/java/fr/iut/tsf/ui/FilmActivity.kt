@@ -7,9 +7,10 @@ import android.view.WindowManager
 import fr.iut.tsf.R
 import fr.iut.tsf.fragments.FilmFragment
 import fr.iut.tsf.fragments.FilmListFragment
+import fr.iut.tsf.model.Film
 import fr.iut.tsf.ui.activity.SimpleFragmentActivity
 
-class FilmActivity : SimpleFragmentActivity() {
+class FilmActivity : SimpleFragmentActivity(), FilmFragment.OnInteractionListener {
     override fun createFragment() = FilmFragment.newInstance(filmId)
     override fun getLayoutResId() = R.layout.toolbar
 
@@ -28,5 +29,9 @@ class FilmActivity : SimpleFragmentActivity() {
         filmId = intent.getIntExtra(EXTRA_MOVIE_ID, filmId)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onAddFavoris(film: Film) {
+        //TODO("Not yet implemented")
     }
 }
