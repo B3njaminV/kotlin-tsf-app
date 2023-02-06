@@ -12,5 +12,8 @@ data class Film(
     @SerializedName("note") val note: String,
     @SerializedName("description") val description: String,
     @SerializedName("release_date") val releaseDate: String,
-    @SerializedName("genre") val genre: String
+    @SerializedName("genre") val genre: String,
+    @SerializedName("popularity") val popularity: Number,
+    @SerializedName("vote_count") val voteCount: Int,
+    @SerializedName("vote_average") val voteAverage: Number
 )
