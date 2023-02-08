@@ -16,6 +16,11 @@ class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
         var film : Film
         return MutableLiveData(allMovies.value?.find { it.id == id })
     }
+
+    fun search(query: String): LiveData<List<Film>> {
+        repository.searchMovieFromManager(query)
+        return repository.allMoviesSearch
+    }
 }
 
 class FilmViewModelFactory(private val repository: TSFRepository) : ViewModelProvider.Factory {

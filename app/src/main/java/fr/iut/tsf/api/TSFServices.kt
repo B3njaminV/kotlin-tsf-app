@@ -27,5 +27,10 @@ interface TSFServices {
         @Query("language") language: String,
     ): Call<Film>
 
-
+    @GET("search/movie")
+    fun searchMovie(
+        @Query("api_key") apiKey: String,
+        @Query("query") query: String,
+        @Query("page") page: Int
+    ): Call<FilmsAPIResponse>
 }

@@ -18,6 +18,7 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
 
     val allMoviesDb = tsfDAO.getAll().asLiveData()
     val allMoviesApi = MutableLiveData<List<Film>>()
+    val allMoviesSearch = MutableLiveData<List<Film>>()
     val oneMovie = MutableLiveData<Film?>()
 
     init {
@@ -61,6 +62,25 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
             }
 
             override fun onFailure(call: Call<Film>, t: Throwable) {
+                Log.e("Repository", "Failure", t)
+            }
+        })
+    }
+
+    public fun searchMovieFromManager(query : String) {
+        tsfManager.searchMovie(query).enqueue(object : Callback<FilmsAPIResponse> {
+            override fun onResponse(call: Call<FilmsAPIResponse>, response: Response<FilmsAPIResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        allMoviesSearch.postValue(responseBody.movies)
+                    } else {
+                        Log.d("Repository", "Failed to get response")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<FilmsAPIResponse>, t: Throwable) {
                 Log.e("Repository", "Failure", t)
             }
         })

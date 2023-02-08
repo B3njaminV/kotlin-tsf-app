@@ -25,5 +25,7 @@ class TSFManager {
     fun getDetailMovie(id : Int): Call<Film> {
         return service.getMovie(APIKEY, id , LANGUAGE);
     }
-
+    fun searchMovie(query : String): Call<FilmsAPIResponse> {
+        return service.searchMovie(APIKEY, query, PAGE);
+    }
 }
