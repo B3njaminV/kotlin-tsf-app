@@ -3,15 +3,18 @@ package fr.iut.tsf.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.iut.tsf.R
 import fr.iut.tsf.TSFApplication
 import fr.iut.tsf.adapater.AdaptateurContenu
 import fr.iut.tsf.model.Film
+import fr.iut.tsf.ui.RechercheActivity
 import fr.iut.tsf.viewmodel.FilmViewModel
 import fr.iut.tsf.viewmodel.FilmViewModelFactory
 
@@ -30,9 +33,13 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         adaptateurContenu = AdaptateurContenu(this)
 
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-        val rv = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val rv = view.findViewById<RecyclerView>(R.id.recyclerViewSearch)
         rv.adapter = adaptateurContenu
         rv.layoutManager = GridLayoutManager(requireContext(), 3)
+
+        view.findViewById<FloatingActionButton>(R.id.searchButton).setOnClickListener {
+            startActivity(RechercheActivity.getIntent(requireContext(), 0))
+        }
         return view
     }
 
@@ -43,8 +50,7 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         }
     }
     override fun onStart() {
-        val toolbar = activity?.findViewById<Toolbar>(R.id.toolbar_activity)
-        toolbar?.title = getString(R.string.filmPopulaire)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = getString(R.string.filmPopulaire)
         super.onStart()
     }
 

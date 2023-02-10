@@ -13,16 +13,16 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/searchText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Avengers"
             android:inputType="textPersonName"
-            android:text="Recherche"
             android:textAllCaps="false" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

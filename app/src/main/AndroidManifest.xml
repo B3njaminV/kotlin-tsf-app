@@ -39,6 +39,15 @@
                 android:value="" />
         </activity>
         <activity
+        android:name=".ui.RechercheActivity"
+        android:exported="false"
+        android:theme="@style/Theme.TSF.NoActionBar">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+    </activity>
+
+        <activity
             android:name=".adapater.AdaptateurContenu"
             android:exported="false">
             <meta-data

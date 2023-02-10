@@ -17,9 +17,9 @@
             android:id="@+id/cardViewrecherche"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
             app:cardUseCompatPadding="true"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -27,8 +27,9 @@
 
                 <ImageView
                     android:id="@+id/imgRecherche"
-                    android:layout_width="59dp"
-                    android:layout_height="62dp"
+                    android:layout_width="128dp"
+                    android:layout_height="66dp"
+                    android:adjustViewBounds="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -39,8 +40,8 @@
 
                 <TextView
                     android:id="@+id/textViewRecherche"
-                    android:layout_width="324dp"
-                    android:layout_height="45dp"
+                    android:layout_width="273dp"
+                    android:layout_height="46dp"
                     android:gravity="center"
                     android:text="TextView"
                     app:layout_constraintBottom_toBottomOf="parent"

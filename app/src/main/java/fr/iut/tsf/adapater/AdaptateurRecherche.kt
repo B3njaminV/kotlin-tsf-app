@@ -30,8 +30,7 @@ class AdaptateurRecherche(private val listener: Callbacks) :
             binding.film = flm
             binding.executePendingBindings()
             binding.textViewRecherche.text = film!!.title
-            // Utilisation de la librairie Glide pour charger l'image
-            Glide.with(itemView).load(PATHFORPICTURE + film!!.path).into(binding.imgRecherche)
+            Glide.with(itemView).load(PATHFORPICTURE + film!!.backdropPath).into(binding.imgRecherche)
         }
     }
 

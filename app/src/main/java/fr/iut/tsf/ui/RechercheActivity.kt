@@ -3,30 +3,33 @@ package fr.iut.tsf.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import fr.iut.tsf.R
 import fr.iut.tsf.fragments.FilmFragment
+import fr.iut.tsf.fragments.FilmListFragment
+import fr.iut.tsf.fragments.RechercheFragment
 import fr.iut.tsf.ui.activity.SimpleFragmentActivity
 
-class RechercheActivity : SimpleFragmentActivity() {
+class RechercheActivity : SimpleFragmentActivity(), RechercheFragment.OnInteractionListener {
 
-    override fun createFragment() = FilmFragment.newInstance(filmId)
+    private lateinit var master: RechercheFragment
+    override fun createFragment() = RechercheFragment().also { master = it }
     override fun getLayoutResId() = R.layout.toolbar
 
-    private var filmId = 0
 
     companion object {
-        private const val EXTRA_MOVIE_ID = "fr.iut.ouafff.extramovieid"
         fun getIntent(context: Context, id: Int) =
-            Intent(context, FilmActivity::class.java).apply {
-                putExtra(EXTRA_MOVIE_ID, id)
-            }
+            Intent(context, RechercheActivity::class.java).apply {}
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        filmId = intent.getIntExtra(EXTRA_MOVIE_ID, filmId)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onFilmSelect(id: Int) {
+        startActivity(FilmActivity.getIntent(this, id))
     }
 
 }
