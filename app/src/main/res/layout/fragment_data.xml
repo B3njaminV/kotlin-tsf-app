@@ -59,7 +59,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/truetsfblue"
-                android:text="@{film.title}"
+                android:text="@{film.title ?? @string/no_data}"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#757575"
                 android:textSize="12sp"
-                android:text="@{film.releaseDate}"
+                android:text="@{film.releaseDate ?? @string/no_data}"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -91,7 +91,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:maxLines="15"
-                android:text="@{film.overview}"
+                android:text="@{film.overview ?? @string/no_data}"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

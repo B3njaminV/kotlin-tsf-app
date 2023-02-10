@@ -55,9 +55,6 @@ class RechercheFragment : Fragment(), AdaptateurRecherche.Callbacks {
             override fun afterTextChanged(s: Editable?) {
                 lifecycleScope.launchWhenResumed {
                     dataList = viewModel.search(s.toString())
-                    dataList.observe(viewLifecycleOwner) {
-                        adaptateurContenu.submitList(dataList.value)
-                    }
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
