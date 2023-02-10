@@ -32,7 +32,6 @@ class AdaptateurContenu(private val listener: Callbacks) :
         fun bind(flm: Film) {
             binding.film = flm
             binding.executePendingBindings()
-            // Utilisation de la librairie Glide pour charger l'image
             Glide.with(itemView).load(PATHFORPICTURE + film!!.path).into(binding.imageView)
         }
     }

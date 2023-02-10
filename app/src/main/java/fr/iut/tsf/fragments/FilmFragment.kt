@@ -19,9 +19,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.iut.tsf.R
 import fr.iut.tsf.TSFApplication
+import fr.iut.tsf.databinding.FragmentDataBinding
 import fr.iut.tsf.model.Film
 import fr.iut.tsf.viewmodel.FilmViewModel
 import fr.iut.tsf.viewmodel.FilmViewModelFactory
+import java.util.TreeMap
 
 class FilmFragment : Fragment() {
     private lateinit var film: LiveData<Film>
@@ -51,30 +53,22 @@ class FilmFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_data, container, false)
-        val backdrop: ImageView = view.findViewById(R.id.backdrop)
-        val poster: ImageView = view.findViewById(R.id.poster)
-        val title: TextView = view.findViewById(R.id.title)
-        val overview: TextView = view.findViewById(R.id.overview)
-        val date: TextView = view.findViewById(R.id.date)
-        val rating: RatingBar = view.findViewById(R.id.rating)
-
-        Glide.with(view).load(PATH + film.value!!.path)
-            .transform(CenterCrop())
-            .into(poster)
-        Glide.with(view).load(PATH + film.value!!.backdropPath)
-            .transform(CenterCrop())
-            .into(backdrop)
+    ): View {
+        val binding = FragmentDataBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.film = film.value
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = film.value!!.title
-        title.text = film.value!!.title
-        overview.text = film.value?.overview
-        date.text = film.value?.releaseDate
-        rating.rating = film.value?.voteAverage!!.toFloat() / 2
-        view.findViewById<FloatingActionButton>(R.id.favButton).setOnClickListener {
+        binding.rating.rating = film.value!!.voteAverage!!.toFloat() / 2
+        Glide.with(this).load(PATH + film.value!!.path)
+            .transform(CenterCrop())
+            .into(binding.poster)
+        Glide.with(this).load(PATH + film.value!!.backdropPath)
+            .transform(CenterCrop())
+            .into(binding.backdrop)
+        binding.favButton.setOnClickListener {
             viewModel.insert(film.value!!)
             Toast.makeText(this.context, getString(R.string.addFavoris), Toast.LENGTH_SHORT).show()
         }
-        return view
+        return binding.root
     }
 }
