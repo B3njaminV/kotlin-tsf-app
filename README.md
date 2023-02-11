@@ -20,7 +20,7 @@
 ## 🖼️ Screenshots
 
 | Films populaires  | Fiche cinématique | Recherche |
-|-------------- -- | --------------| -------------- |
+|---------------- | --------------| -------------- |
 | ![Image](https://zupimages.net/up/23/06/qckd.jpg) | ![Image](https://zupimages.net/up/23/06/1mxx.jpg) | ![Image](https://zupimages.net/up/23/06/o33u.jpg) |
 
 ## ✍️ Auteur
