@@ -48,7 +48,7 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
         })
     }
 
-    private suspend fun getMovieDetailFromManager(id : Int) {
+    public fun getMovieDetailFromManager(id : Int) {
         tsfManager.getDetailMovie(id).enqueue(object : Callback<Film> {
             override fun onResponse(call: Call<Film>, response: Response<Film>) {
                 if (response.isSuccessful) {

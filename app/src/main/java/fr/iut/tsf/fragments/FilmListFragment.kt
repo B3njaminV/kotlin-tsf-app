@@ -38,7 +38,7 @@ class FilmListFragment : Fragment(), AdaptateurContenu.Callbacks {
         rv.layoutManager = GridLayoutManager(requireContext(), 3)
 
         view.findViewById<FloatingActionButton>(R.id.searchButton).setOnClickListener {
-            startActivity(RechercheActivity.getIntent(requireContext(), 0))
+            startActivity(RechercheActivity.getIntent(requireContext()))
         }
         return view
     }

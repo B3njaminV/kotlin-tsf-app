@@ -19,7 +19,7 @@ class RechercheActivity : SimpleFragmentActivity(), RechercheFragment.OnInteract
 
 
     companion object {
-        fun getIntent(context: Context, id: Int) =
+        fun getIntent(context: Context) =
             Intent(context, RechercheActivity::class.java).apply {}
     }
 

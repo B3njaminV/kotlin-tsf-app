@@ -13,8 +13,8 @@ class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
     fun delete(film: Film) = viewModelScope.launch { repository.delete(film) }
 
     fun getFilm(id: Int): LiveData<Film>{
-        var film : Film
-        return MutableLiveData(allMovies.value?.find { it.id == id })
+        repository.getMovieDetailFromManager(id)
+        return repository.oneMovie
     }
 
     fun search(query: String): LiveData<List<Film>> {
