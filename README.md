@@ -4,7 +4,7 @@
 <h1 align="center"> TSF Mobile App 👋</h1>
 <p>
 
-> La version mobile de l'application TopSerieFilm !
+> La version mobile de l'application TopSerieFilm ! Retrouvez les dernières nouveautés cinématiques, ou vos films sauvegardés si vous êtes à cours d'Internet !
 
 ### 🏠 [Homepage](https://github.com/B3njaminV/kotlin-tsf-app)
 
@@ -17,6 +17,11 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TSF sera bientôt publié sur le** [Play Store](https://play.google.com/store)
 
+## 🖼️ Screenshots
+
+| Films populaires  | Fiche cinématique | Recherche |
+|-------------- -- | --------------| -------------- |
+| ![Image](https://zupimages.net/up/23/06/qckd.jpg) | ![Image](https://zupimages.net/up/23/06/1mxx.jpg) | ![Image](https://zupimages.net/up/23/06/o33u.jpg) |
 
 ## ✍️ Auteur
 
