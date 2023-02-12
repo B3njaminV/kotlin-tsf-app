@@ -47,7 +47,7 @@ class FilmFragment : Fragment() {
                 FilmViewModel::class.java
         )
         film = viewModel.getFilm(filmId)
-        Log.d("FilmFragment", "onCreate: $filmId ${film.value?.title} ${film.value?.description}")
+        Log.d("FilmFragment", "onCreate: $filmId ${film.value?.title} ${film.value?.overview}")
     }
 
     override fun onCreateView(

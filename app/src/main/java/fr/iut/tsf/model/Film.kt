@@ -10,7 +10,6 @@ data class Film(
     @SerializedName("title") val title: String?,
     @SerializedName("poster_path") val path: String?,
     @SerializedName("overview") val overview: String?,
-    @SerializedName("description") val description: String?,
     @SerializedName("release_date") val releaseDate: String?,
     @SerializedName("popularity") val popularity: String?,
     @SerializedName("vote_count") val voteCount: Int?,
