@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.WindowManager
 import fr.iut.tsf.R
 import fr.iut.tsf.fragments.FilmFragment
-import fr.iut.tsf.fragments.FilmListFragment
-import fr.iut.tsf.model.Film
 import fr.iut.tsf.ui.activity.SimpleFragmentActivity
 
 class FilmActivity : SimpleFragmentActivity() {

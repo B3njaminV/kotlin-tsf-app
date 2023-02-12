@@ -23,7 +23,7 @@ class TSFManager {
         return service.getPopularMovies(APIKEY, LANGUAGE, PAGE);
     }
     fun getDetailMovie(id : Int): Call<Film> {
-        return service.getMovie(APIKEY, id , LANGUAGE);
+        return service.getMovie(id, APIKEY, LANGUAGE);
     }
     fun searchMovie(query : String): Call<FilmsAPIResponse> {
         return service.searchMovie(APIKEY, query, PAGE);

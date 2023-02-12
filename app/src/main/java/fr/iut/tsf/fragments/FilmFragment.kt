@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -44,7 +45,7 @@ class FilmFragment : Fragment() {
         filmId =  savedInstanceState?.getInt(EXTRA_FILM_ID) ?: arguments?.getInt(EXTRA_FILM_ID) ?: filmId
         viewModel = FilmViewModelFactory((requireActivity().application as TSFApplication).repository).create(
                 FilmViewModel::class.java
-            )
+        )
         film = viewModel.getFilm(filmId)
         Log.d("FilmFragment", "onCreate: $filmId ${film.value?.title} ${film.value?.description}")
     }
@@ -57,18 +58,25 @@ class FilmFragment : Fragment() {
         val binding = FragmentDataBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.film = film.value
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title = film.value!!.title
-        binding.rating.rating = film.value!!.voteAverage!!.toFloat() / 2
-        Glide.with(this).load(PATH + film.value!!.path)
+        (activity as AppCompatActivity?)?.supportActionBar?.title = film.value?.title
+        binding.rating.rating = film.value?.voteAverage?.toFloat() ?: 0f
+        Glide.with(this).load(PATH + film.value?.path)
             .transform(CenterCrop())
             .into(binding.poster)
-        Glide.with(this).load(PATH + film.value!!.backdropPath)
+        Glide.with(this).load(PATH + film.value?.backdropPath)
             .transform(CenterCrop())
             .into(binding.backdrop)
         binding.favButton.setOnClickListener {
-            viewModel.insert(film.value!!)
+            film.value?.let { it1 -> viewModel.insert(it1) }
             Toast.makeText(this.context, getString(R.string.addFavoris), Toast.LENGTH_SHORT).show()
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launchWhenResumed {
+            film = viewModel.getFilm(filmId)
+        }
     }
 }

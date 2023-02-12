@@ -17,7 +17,7 @@ abstract class SimpleFragmentActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar_activity))
         val toolbar = findViewById<Toolbar>(R.id.toolbar_activity)
         if(toolbar != null) {
-            toolbar.titleMarginStart = 200
+            toolbar.titleMarginStart = 240
         }
         if (supportFragmentManager.findFragmentById(R.id.container_fragment) == null) {
             supportFragmentManager.beginTransaction()

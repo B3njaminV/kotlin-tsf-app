@@ -22,8 +22,8 @@ interface TSFServices {
 
     @GET("movie/{movieId}")
     fun getMovie(
-        @Query("api_key") apiKey: String,
         @Path("movieId") movieId: Int,
+        @Query("api_key") apiKey: String,
         @Query("language") language: String,
     ): Call<Film>
 

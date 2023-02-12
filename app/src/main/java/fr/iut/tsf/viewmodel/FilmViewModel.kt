@@ -3,6 +3,8 @@ package fr.iut.tsf.viewmodel
 import androidx.lifecycle.*
 import fr.iut.tsf.data.TSFRepository
 import fr.iut.tsf.model.Film
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
@@ -13,8 +15,7 @@ class FilmViewModel(private val repository: TSFRepository) : ViewModel() {
     fun delete(film: Film) = viewModelScope.launch { repository.delete(film) }
 
     fun getFilm(id: Int): LiveData<Film>{
-        repository.getMovieDetailFromManager(id)
-        return repository.oneMovie
+        return MutableLiveData(allMovies.value?.find { it.id == id })
     }
 
     fun search(query: String): LiveData<List<Film>> {

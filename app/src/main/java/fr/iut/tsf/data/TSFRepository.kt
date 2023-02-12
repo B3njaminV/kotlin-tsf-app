@@ -19,7 +19,7 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
     val allMoviesDb = tsfDAO.getAll().asLiveData()
     val allMoviesApi = MutableLiveData<List<Film>>()
     val allMoviesSearch = MutableLiveData<List<Film>>()
-    val oneMovie = MutableLiveData<Film?>()
+    val oneMovie = MutableLiveData<Film>()
 
     init {
         CoroutineScope(Dispatchers.IO).launch { getAllPopularMovieDbFromManager() }
@@ -54,7 +54,7 @@ class TSFRepository(private val tsfDAO: TSFDao, private val tsfManager: TSFManag
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        oneMovie.postValue(responseBody)
+                        oneMovie.postValue(responseBody!!)
                     } else {
                         Log.d("Repository", "Failed to get response")
                     }
