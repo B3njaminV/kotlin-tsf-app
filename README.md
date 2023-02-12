@@ -4,10 +4,10 @@
 <h1 align="center"> TSF Mobile App 👋</h1>
 <p>
 
-> La version mobile de l'application TopSerieFilm ! Retrouvez les dernières nouveautés cinématiques, ou vos films sauvegardés si vous êtes à cours d'Internet !
+> Après l'application winodws, voici la version mobile de l'application TopSerieFilm qui vous permettra de retrouvez les dernières nouveautés cinématiques !
 
-### 🏠 [Homepage](https://github.com/B3njaminV/kotlin-tsf-app)
-
+### 🏠 [Version Mobile](https://github.com/B3njaminV/kotlin-tsf-app)
+### 📌 [Version Windows](https://github.com/B3njaminV/wpf-tsf-app)
 
 ## 📍 Prérequis
 
