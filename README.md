@@ -31,6 +31,8 @@
 
 :white_check_mark: Implémentation DataBinding (master, detail, adaptateur)
 
+:white_check_mark: Implémentation Coroutines (get)
+
 :white_check_mark: Gestion des vues/fragments + navigation entre les fragments
 
 :white_check_mark: Affichage des films populaires
