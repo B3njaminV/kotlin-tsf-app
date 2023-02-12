@@ -6,7 +6,7 @@
 
 > Après l'application winodws, voici la version mobile de l'application TopSerieFilm qui vous permettra de retrouvez les dernières nouveautés cinématiques !
 
-### 🏠 [Version Mobile](https://github.com/B3njaminV/kotlin-tsf-app)
+### 🏠 [Version Mobile](https://codefirst.iut.uca.fr/git/benjamin.valleix/kotlin-tsf-app)
 ### 📌 [Version Windows](https://github.com/B3njaminV/wpf-tsf-app)
 
 ## 📍 Prérequis
