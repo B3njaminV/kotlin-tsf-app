@@ -23,6 +23,21 @@
 |---------------- | --------------| -------------- |
 | ![Image](https://zupimages.net/up/23/06/qckd.jpg) | ![Image](https://zupimages.net/up/23/06/1mxx.jpg) | ![Image](https://zupimages.net/up/23/06/o33u.jpg) |
 
+## ⚙️ Roadmap
+
+:white_check_mark: Implémentation API TMDB
+
+:white_check_mark: Implémentation MVVM
+
+:white_check_mark: Gestion des vues/fragments + navigation entre les fragments
+
+:white_check_mark: Affichage des films populaires
+
+:white_check_mark: Gestion de la recherche de films à partir de mots-clés
+
+:white_check_mark: Mise en favoris de films
+
+
 ## ✍️ Auteur
 
 👤 **VALLEIX Benjamin**
